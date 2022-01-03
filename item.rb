@@ -1,17 +1,22 @@
-class Item 
-    def initialize genre, author, source, label, publish_date, archived
-        @id = Random.rand(1..1000000)
-        @genre = genre
-        @author = author
-        @source = source
-        @label = label
-        @publish_date = publish_date
-        @archived = archived
-    end
+class Item
+  attr_reader id
+  attr_accessor genre, author, source, label, publish_date
 
-    def can_be_archived
-    end
+  def initialize(genre:, author:, source:, label:, publish_date:, archived:)
+    @id = Random.rand(1..1_000_000)
+    @genre = genre
+    @author = author
+    @source = source
+    @label = label
+    @publish_date = publish_date
+    @archived = archived
+  end
 
-    def move_to_archive
-    end
+  def can_be_archived
+    'archiving'
+  end
+
+  def move_to_archive
+    'moving'
+  end
 end
