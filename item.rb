@@ -1,8 +1,8 @@
 require 'date'
 
 class Item
-  attr_reader id
-  attr_accessor genre, author, source, label, publish_date
+  attr_reader :id
+  attr_accessor :genre, :author, :source, :label, :publish_date
 
   def initialize(publish_date:, archived: false)
     @id = Random.rand(1..1_000_000)
@@ -34,7 +34,6 @@ class Item
     @archived = can_be_archived?
   end
 
-  private
 
   def can_be_archived
     current_date = Date.today
