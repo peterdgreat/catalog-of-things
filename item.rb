@@ -34,10 +34,25 @@ class Item
     @archived = can_be_archived?
   end
 
+  def to_s
+    "ID: #{@id} - Publish Date: #{@publish_date} - Genre: #{@genre} - Author: #{@author}\
+    - Source: #{@source} - Label: #{@label} - Archived? #{@archived}"
+  end
+
+  def to_json(_options = {})
+    {
+      'id' => @id,
+      'publish_date' => @publish_date.strftime('%Y-%m-%d'),
+      'genre_id' => @genre.id,
+      'author_id' => @author.id,
+      'source_id' => @source.id,
+      'label_id' => @label.id
+    }
+  end
+
   private
 
   def can_be_archived?
-    current_date = Date.today
-    current_date.year - publish_date.year > 10
+    (Date.today.year - publish_date.year) > 10
   end
 end
