@@ -45,21 +45,21 @@ class App
   def choices_pt1(option)
     case option
     when '1'
-      'Listing all books'
+      puts 'Listing all books'
       # @var = Books.new(Author, Title)
       # @var.list
     when '2'
-      'Listing all music albums'
+      puts 'Listing all music albums'
       # @var = MusicAlbum.new(Author, Title)
       # @var.list
     when '3'
-      'Listing all movies'
+      puts 'Listing all movies'
     when '4'
-      'Listing of games'
+      puts 'Listing of games'
     when '5'
-      'Listing all genres'
+      puts 'Listing all genres'
     when '6'
-      'Listing all labels'
+      puts 'Listing all labels'
     else
       puts 'Not a valid option'
     end
@@ -68,17 +68,17 @@ class App
   def choices_pt2(option)
     case option
     when '7'
-      'Listing all authors'
+      puts 'Listing all authors'
     when '8'
-      'Listing all sources'
+      puts 'Listing all sources'
     when '9'
-      'Adding a book'
+      puts 'Adding a book'
     when '10'
-      'Adding a music album'
+      puts 'Adding a music album'
     when '11'
-      'Adding a movie'
+      puts 'Adding a movie'
     when '12'
-      'Adding a game'
+      puts 'Adding a game'
     else
       puts 'Not a valid option'
     end
