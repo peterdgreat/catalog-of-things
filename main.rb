@@ -1,5 +1,9 @@
+require './music_album_handler'
+
 class App
   def initialize
+    @music_album_handler = MusicAlbumHandler.new
+    @music_album_handler.load
     @options = {
       '1' => 'List all books',
       '2' => 'List all music albums',
@@ -35,7 +39,7 @@ class App
   end
 
   def menu_choice(option)
-    if option <= 6
+    if option.to_i <= 6
       choices_pt1(option)
     else
       choices_pt2(option)
@@ -49,9 +53,7 @@ class App
       # @var = Books.new(Author, Title)
       # @var.list
     when '2'
-      puts 'Listing all music albums'
-      # @var = MusicAlbum.new(Author, Title)
-      # @var.list
+      puts @music_album_handler.music_albums
     when '3'
       puts 'Listing all movies'
     when '4'
@@ -74,7 +76,7 @@ class App
     when '9'
       puts 'Adding a book'
     when '10'
-      puts 'Adding a music album'
+      @music_album_handler.create_music_album
     when '11'
       puts 'Adding a movie'
     when '12'
@@ -85,7 +87,7 @@ class App
   end
 
   def save_and_exit
-    'Saving ...'
+    @music_album_handler.save
   end
 end
 
