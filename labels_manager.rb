@@ -1,15 +1,51 @@
+require './label'
+
 class LabelsManager
     def initialize
-        @labels = []
+        labels = File.read('./data/labels.json')
+        @labels = labels == '' ? [] : convert_hashs_to_labels(JSON.parse(labels))
     end
 
-    def add_label label
+
+    def add_label
+        puts 'Enter Title'
+        title = gets.chomp
+        puts 'Enter Color'
+        color = gets.chomp
+        label = Label.new(title, color);
         @labels.push(label)
+        save_labels
+    end
+
+
+    def save_labels
+        json = '';
+        hash_arr = []
+        @labels.each do |l|
+            hash = {title: l.title, color: l.color}
+            hash_arr.push(hash)
+        end
+        json = JSON.generate(hash_arr)
+        File.write('./data/labels.json',json)
     end
 
     def list_all_labels
         @labels.each_with_index do |l, i|
-            puts " #{i}) ID: #{l.id} Title:  #{l.title} Color #{l.color}"
+            puts " #{i}) ID: #{l.id}, Title:  #{l.title}, Color #{l.color}"
         end
+    end
+
+    private
+
+    def convert_hashs_to_labels(hashes)
+        labels = []
+        hashes.each do |h|
+            l = Label.new(h['id'], h['title'], h['color'])
+            l.items.each do |item_hash|
+                'convert to item object'
+            end
+            labels << l
+        end
+        labels
     end
 end

@@ -1,3 +1,6 @@
+require './books_manager'
+require './labels_manager'
+
 class App
   def initialize
     @options = {
@@ -15,6 +18,8 @@ class App
       '12' => 'Add a game',
       '0' => 'Save and exit'
     }
+    @books_manager = BooksManager.new
+    @labels_manager = LabelsManager.new
   end
 
   def run
@@ -35,7 +40,7 @@ class App
   end
 
   def menu_choice(option)
-    if option <= 6
+    if option <= '6'
       choices_pt1(option)
     else
       choices_pt2(option)
@@ -45,9 +50,7 @@ class App
   def choices_pt1(option)
     case option
     when '1'
-      puts 'Listing all books'
-      # @var = Books.new(Author, Title)
-      # @var.list
+     @books_manager.list_all_books
     when '2'
       puts 'Listing all music albums'
       # @var = MusicAlbum.new(Author, Title)
@@ -59,7 +62,7 @@ class App
     when '5'
       puts 'Listing all genres'
     when '6'
-      puts 'Listing all labels'
+      @labels_manager.list_all_labels
     else
       puts 'Not a valid option'
     end
@@ -72,7 +75,7 @@ class App
     when '8'
       puts 'Listing all sources'
     when '9'
-      puts 'Adding a book'
+      @books_manager.add_book
     when '10'
       puts 'Adding a music album'
     when '11'
