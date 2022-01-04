@@ -30,11 +30,19 @@ class App
         break
       end
 
-      menu_choice option
+      menu_choice(option)
     end
   end
 
   def menu_choice(option)
+    if option <= 6
+      choices_pt1(option)
+    else
+      choices_pt2(option)
+    end
+  end
+
+  def choices_pt1(option)
     case option
     when '1'
       'Listing all books'
@@ -52,6 +60,13 @@ class App
       'Listing all genres'
     when '6'
       'Listing all labels'
+    else
+      puts 'Not a valid option'
+    end
+  end
+
+  def choices_pt2(option)
+    case option
     when '7'
       'Listing all authors'
     when '8'
