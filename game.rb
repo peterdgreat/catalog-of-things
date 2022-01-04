@@ -1,4 +1,5 @@
 require_relative 'item'
+require_relative 'store_game'
 class Game < Item
   attr_accessor :multi_player, :last_played_at, :publish_date, :archived, :games
 
@@ -23,5 +24,15 @@ class Game < Item
       puts game
     end
   end
-end
 
+  def to_json(*_args)
+    {
+      id: id,
+      multi_player: @multi_player,
+      last_played_at: @last_played_at,
+      publish_date: @publish_date,
+      archived: @archived,
+      games: @games
+    }.to_json
+  end
+end
