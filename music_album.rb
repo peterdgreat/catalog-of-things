@@ -13,15 +13,15 @@ class MusicAlbum < Item
   end
 
   def to_json(_options = {})
-  {
-    'id' => @id,
-    'genre' => @genre,
-    'author' => @author,
-    'source' => @source,
-    'label' => @label,
-    'publish_date' => @publish_date,
-    'archived' => @archived,
-    'on_spotify' => @on_spotify
-  }
+    {
+      'id' => @id,
+      'genre' => @genre,
+      'author' => @author,
+      'source' => @source,
+      'label' => @label,
+      'publish_date' => @publish_date,
+      'archived' => @archived,
+      'on_spotify' => @on_spotify
+    }
   end
 end
