@@ -1,4 +1,4 @@
-class LabelManager
+class LabelsManager
     def initialize
         @labels = []
     end
@@ -9,7 +9,7 @@ class LabelManager
 
     def list_all_labels
         @labels.each_with_index do |l, i|
-            puts " #{i}) ID: #{b.id} Title:  #{l.title} Color #{l.color}"
+            puts " #{i}) ID: #{l.id} Title:  #{l.title} Color #{l.color}"
         end
     end
 end

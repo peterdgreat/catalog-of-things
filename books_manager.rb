@@ -1,4 +1,5 @@
 class BooksManager
+    attr_reader :books
     def initialize
         @books = []
     end
