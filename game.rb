@@ -1,5 +1,5 @@
 require_relative 'item'
-require_relative 'store_game'
+
 class Game < Item
   attr_accessor :multi_player, :last_played_at, :publish_date, :archived, :games
 

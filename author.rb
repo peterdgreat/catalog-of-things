@@ -1,6 +1,6 @@
 class Author
   attr_reader :id
-  attr_accessor :name, :items, :last_played_at, :publish_date, :archived
+  attr_accessor :first_name, :last_name, :items
 
   def initialize(first_name, last_name)
     @first_name = first_name
@@ -18,5 +18,13 @@ class Author
     @items.each do |item|
       puts item
     end
+  end
+
+  def to_json(*_args)
+    {
+      id: @id,
+      name: "#{@first_name} #{@last_name}",
+      items: @items
+    }.to_json
   end
 end
