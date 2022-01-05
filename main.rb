@@ -95,7 +95,6 @@ class App
   end
 
   def save_and_exit
-    'Saving ...'
     @game_manager.store_games
     @author_manager.store_authors
   end
