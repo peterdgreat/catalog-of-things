@@ -18,3 +18,9 @@ create TABLE author(
     first_name VARCHAR(255),
     last_name VARCHAR(255),
 );
+create TABLE author_item(
+    author_id INTEGER,
+    item_id INTEGER,
+    FOREIGN KEY(author_id) REFERENCES author(id),
+    FOREIGN KEY(item_id) REFERENCES item(id)
+);
