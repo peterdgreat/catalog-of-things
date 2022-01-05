@@ -14,14 +14,13 @@ class LabelsManager
     label = Label.new(title, color)
     @labels.push(label)
     save_labels
+    label
   end
 
+
+
   def save_labels
-    hash_arr = []
-    @labels.each do |l|
-      hash = { title: l.title, color: l.color, id: l.id }
-      hash_arr.push(hash)
-    end
+    hash_arr = convert_labels_to_hashes
     json = JSON.generate(hash_arr)
     File.write('./data/labels.json', json)
   end
@@ -41,5 +40,14 @@ class LabelsManager
       labels << l
     end
     labels
+  end
+
+  def convert_labels_to_hashes
+    hash_arr = []
+    @labels.each do |l|
+      hash = { title: l.title, color: l.color, id: l.id }
+      hash_arr.push(hash)
+    end
+    hash_arr
   end
 end
