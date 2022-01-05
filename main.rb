@@ -1,9 +1,12 @@
 require './music_album_handler'
+require './genre_handler'
 
 class App
   def initialize
     @music_album_handler = MusicAlbumHandler.new
     @music_album_handler.load
+    @genre_handler = GenreHandler.new
+    @genre_handler.load
     @options = {
       '1' => 'List all books',
       '2' => 'List all music albums',
@@ -50,8 +53,6 @@ class App
     case option
     when '1'
       puts 'Listing all books'
-      # @var = Books.new(Author, Title)
-      # @var.list
     when '2'
       puts @music_album_handler.music_albums
     when '3'
@@ -59,7 +60,7 @@ class App
     when '4'
       puts 'Listing of games'
     when '5'
-      puts 'Listing all genres'
+      puts @genre_handler.genres
     when '6'
       puts 'Listing all labels'
     else

@@ -1,4 +1,5 @@
 class Genre
+  attr_reader :id
   attr_accessor :name, :items
 
   def initialize(id:, name: 'Not specified')
@@ -12,11 +13,14 @@ class Genre
     @items.push(item) unless @items.include?(item)
   end
 
+  def to_s
+    "ID: #{@id} - Name: #{@name}"
+  end
+
   def to_json(_options = {})
     {
       'id' => @id,
-      'name' => @name,
-      'items' => @items
+      'name' => @name
     }
   end
 end

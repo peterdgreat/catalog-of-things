@@ -1,7 +1,9 @@
 require 'json'
 require './music_album'
+require './translate'
 
 class MusicAlbumHandler
+  include Translate
   attr_reader :music_albums
 
   def initialize
@@ -27,10 +29,6 @@ class MusicAlbumHandler
     @music_albums.push(MusicAlbum.new(id: id, publish_date: publish_date))
   end
 
-  def translate_answer(ans)
-    %w[yes y].include?(ans.downcase)
-  end
-
   def create_music_album
     puts ''
     puts 'Creating Music Album...'
@@ -40,11 +38,12 @@ class MusicAlbumHandler
     on_spotify = gets.chomp
     print 'Archived? [Y/N]: '
     archived = gets.chomp
-    music_album = MusicAlbum.new(id: nil, publish_date: publish_date, on_spotify: translate_answer(on_spotify))
-    if translate_answer(archived)
+    music_album = MusicAlbum.new(id: nil, publish_date: publish_date, on_spotify: translate_input(on_spotify))
+    if translate_input(archived)
       music_album.move_to_archive
-      puts "It wasn't possible to archive this Music Album" if translate_answer(archived) != music_album.archived
+      puts "It wasn't possible to archive this Music Album" if translate_input(archived) != music_album.archived
     end
+    puts ''
     @music_albums.push(music_album)
     puts 'Music Album created!'
   end
