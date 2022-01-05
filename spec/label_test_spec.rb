@@ -2,7 +2,7 @@ require './label'
 
 describe Label do
   context 'testing Label class' do
-    label = Label.new(nil, 'Gift', 'Red')
+    label = Label.new('Gift', 'Red')
 
     it 'should return Gift as a label title' do
       expect(label.title).to eq 'Gift'

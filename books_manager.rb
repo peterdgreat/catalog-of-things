@@ -18,7 +18,7 @@ class BooksManager
     publish_date = gets.chomp
     puts 'Enter true or false if the books is archived '
     archived = gets.chomp
-    book = Book.new(publisher, cover_state, publish_date, archived)
+    book = Book.new(publisher, cover_state, publish_date, archived: archived)
     @books.push(book)
     save_books
   end
@@ -45,7 +45,7 @@ class BooksManager
   def convert_hashs_to_books(hashes)
     books = []
     hashes.each do |h|
-      b = Book.new(h['publisher'], h['cover_state'], h['publish_date'], h['archived'])
+      b = Book.new(h['publisher'], h['cover_state'], h['publish_date'], archived: h['archived'])
       books << b
     end
     books

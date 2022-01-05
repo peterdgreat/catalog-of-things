@@ -19,7 +19,7 @@ class LabelsManager
   def save_labels
     hash_arr = []
     @labels.each do |l|
-      hash = { title: l.title, color: l.color }
+      hash = { title: l.title, color: l.color, id: l.id }
       hash_arr.push(hash)
     end
     json = JSON.generate(hash_arr)
@@ -37,7 +37,7 @@ class LabelsManager
   def convert_hashs_to_labels(hashes)
     labels = []
     hashes.each do |h|
-      l = Label.new(h['id'], h['title'], h['color'])
+      l = Label.new(h['title'], h['color'], h['id'])
       # l.items.each do |_item_hash|
       # end
       labels << l
