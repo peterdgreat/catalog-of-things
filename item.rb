@@ -9,7 +9,6 @@ class Item
     @id = Random.rand(1..1_000_000)
     @publish_date = Date.parse(publish_date)
     @archived = archived
-    @labels_manager = LabelsManager.new
   end
 
   def add_genre(genre)
@@ -27,8 +26,9 @@ class Item
     source.items.push(self) unless source.items.include?(self)
   end
 
-  def add_label label=nil
-    label = label ? label : @labels_manager.add_label
+  def add_label(label = nil)
+    labels_manager = LabelsManager.new
+    label ||= labels_manager.add_label
     @label = label
     label.items.push(self) unless label.items.include?(self)
   end

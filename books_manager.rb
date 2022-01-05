@@ -26,7 +26,7 @@ class BooksManager
     save_books
   end
 
-  def add_label book
+  def add_label(book)
     puts 'Enter if you want to add a label to this book [Y/N] ?'
     reponse = gets.chomp
     book.add_label if reponse.downcase == 'y'
@@ -35,19 +35,15 @@ class BooksManager
   def list_all_books
     @books.each_with_index do |b, i|
       puts "
-       #{i}) 
+       #{i})
             Publisher: #{b.publisher},
             Cover State: #{b.cover_state},
             Publish Date: #{b.publish_date},
             Archived : #{b.archived}
         "
-        show_label b.label
+      show_label b.label
     end
   end
-
-
-
- 
 
   def save_books
     hash_arr = convert_books_to_hashes
@@ -68,28 +64,30 @@ class BooksManager
     books
   end
 
-  def convert_hash_to_label h
-    l = Label.new(h['title'], h['color'],h['id'])
+  def convert_hash_to_label(hash)
+    Label.new(hash['title'], hash['color'], hash['id'])
   end
 
   def convert_books_to_hashes
     hash_arr = []
     @books.each do |b|
       hash = { publisher: b.publisher, cover_state: b.cover_state, publish_date: b.publish_date,
-               archived: b.archived, label: b.label ? {id: b.label.id, title: b.label.title, color: b.label.color} : nil }
+               archived: b.archived, label: if b.label
+                                              { id: b.label.id, title: b.label.title, color: b.label.color }
+                                            end }
       hash_arr.push(hash)
     end
     hash_arr
   end
 
-  def show_label l
-    if l.title 
-      print "
+  def show_label(label)
+    return unless label.title
+
+    print "
             Lable:
-              ID: #{l.id}, 
-              Title: #{l.title},
-              Color: #{l.color}
+              ID: #{label.id},
+              Title: #{label.title},
+              Color: #{label.color}
       "
-    end
   end
 end

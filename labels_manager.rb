@@ -17,8 +17,6 @@ class LabelsManager
     label
   end
 
-
-
   def save_labels
     hash_arr = convert_labels_to_hashes
     json = JSON.generate(hash_arr)
