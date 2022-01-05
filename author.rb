@@ -14,12 +14,6 @@ class Author
     item.add_author(self)
   end
 
-  def list_authors
-    @items.each do |item|
-      puts item
-    end
-  end
-
   def to_json(*_args)
     {
       id: @id,

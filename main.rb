@@ -1,9 +1,12 @@
 require_relative 'game_manager'
 require_relative 'author'
+require_relative 'author_manager'
 class App
   def initialize
     @game_manager = GameManager.new
     @game_manager.read_games
+    @author_manager = AuthorManager.new
+    @author_manager.read_author
     @options = {
       '1' => 'List all books',
       '2' => 'List all music albums',
@@ -29,7 +32,7 @@ class App
       puts 'Please choose an option by eterin a number:'
       @options.each { |key, value| puts "#{key}) #{value}" }
       option = gets.chomp.to_i
-      if option == 0
+      if option.zero?
         save_and_exit
         break
       end
@@ -59,7 +62,7 @@ class App
     when 3
       puts 'Listing all movies'
     when 4
-      puts 'Listing of games'
+      puts 'Listing all games'
       @game_manager.list_games
     when 5
       puts 'Listing all genres'
@@ -73,7 +76,8 @@ class App
   def choices_pt2(option)
     case option
     when 7
-      puts 'Listing all authors'
+      puts 'Not Available'
+      # @author_manager.list_authors
     when 8
       puts 'Listing all sources'
     when 9
@@ -93,6 +97,7 @@ class App
   def save_and_exit
     'Saving ...'
     @game_manager.store_games
+    @author_manager.store_authors
   end
 end
 
