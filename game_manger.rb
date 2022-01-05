@@ -16,7 +16,6 @@ class GameManager
     publish_date = gets.chomp
     game = Game.new(multi_player, last_played_at, publish_date)
     @games << game
-    store_games(@games)
     puts 'Game added'
   end
 
@@ -28,5 +27,9 @@ class GameManager
     @games.each do |game|
       puts game
     end
+  end
+
+  def read_games
+    @games = JSON.parse(File.read('games.json')) if File.exist?('games.json')
   end
 end
