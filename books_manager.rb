@@ -25,7 +25,8 @@ class BooksManager
 
   def list_all_books
     @books.each_with_index do |b, i|
-      puts " #{i}) Publisher: #{b.publisher}, Cover State: #{b.cover_state}, Publish Date: #{b.publish_date}, Archived : #{b.archived} "
+      puts " #{i}) Publisher: #{b.publisher}, Cover State: #{b.cover_state}
+      , Publish Date: #{b.publish_date}, Archived : #{b.archived} "
     end
   end
 
