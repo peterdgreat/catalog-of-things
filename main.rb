@@ -50,7 +50,7 @@ class App
   def choices_pt1(option)
     case option
     when '1'
-     @books_manager.list_all_books
+      @books_manager.list_all_books
     when '2'
       puts 'Listing all music albums'
       # @var = MusicAlbum.new(Author, Title)

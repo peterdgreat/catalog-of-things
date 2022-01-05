@@ -17,7 +17,7 @@ describe Book do
     end
 
     it 'should return false as a return of can_be_archived? method' do
-        expect(book.can_be_archived?).to eq false
-      end
+      expect(book.can_be_archived?).to eq false
+    end
   end
-end 
+end

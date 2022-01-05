@@ -9,13 +9,13 @@ describe Label do
     end
 
     it 'should return Red as a label color' do
-        expect(label.color).to eq 'Red'
+      expect(label.color).to eq 'Red'
     end
 
     it 'should return 1 as item length' do
-        i = Item.new publish_date:'2020-1-1'
-        label.add_item i
-        expect(label.items.length).to eq 1
+      i = Item.new publish_date: '2020-1-1'
+      label.add_item i
+      expect(label.items.length).to eq 1
     end
   end
-end 
+end

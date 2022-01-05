@@ -1,14 +1,15 @@
 class Label
-    attr_reader :id, :title, :color, :items
-    def initialize   id = 0, title, color
-        @id = id == 0 ? Random.rand(1..1000000) : id
-        @title = title
-        @color = color
-        @items = []
-    end
+  attr_reader :id, :title, :color, :items
 
-    def add_item item
-        item.label = self;
-        @items.push(item)
-    end
+  def initialize(title, color, id = 0)
+    @id = id.zero? ? Random.rand(1..1_000_000) : id
+    @title = title
+    @color = color
+    @items = []
+  end
+
+  def add_item(item)
+    item.label = self
+    @items.push(item)
+  end
 end
