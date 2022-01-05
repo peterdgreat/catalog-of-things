@@ -38,8 +38,6 @@ class LabelsManager
     labels = []
     hashes.each do |h|
       l = Label.new(h['title'], h['color'], h['id'])
-      # l.items.each do |_item_hash|
-      # end
       labels << l
     end
     labels

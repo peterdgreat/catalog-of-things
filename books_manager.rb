@@ -16,9 +16,10 @@ class BooksManager
     cover_state = gets.chomp
     puts 'Enter publish date'
     publish_date = gets.chomp
-    puts 'Enter true or false if the books is archived '
+    puts 'Enter Y if the books is archived N if not archived '
     archived = gets.chomp
-    book = Book.new(publisher, cover_state, publish_date, archived: archived)
+    is_archived = archived.downcase == 'y'
+    book = Book.new(publisher, cover_state, publish_date, archived: is_archived)
     @books.push(book)
     save_books
   end
