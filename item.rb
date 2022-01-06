@@ -1,8 +1,9 @@
 require 'date'
+require './labels_manager'
 
 class Item
-  attr_reader id
-  attr_accessor genre, author, source, label, publish_date
+  attr_reader :id
+  attr_accessor :genre, :author, :source, :label, :publish_date
 
   def initialize(publish_date:, archived: false)
     @id = Random.rand(1..1_000_000)
@@ -25,7 +26,9 @@ class Item
     source.items.push(self) unless source.items.include?(self)
   end
 
-  def add_label(label)
+  def add_label(label = nil)
+    labels_manager = LabelsManager.new
+    label ||= labels_manager.add_label
     @label = label
     label.items.push(self) unless label.items.include?(self)
   end
@@ -34,9 +37,7 @@ class Item
     @archived = can_be_archived?
   end
 
-  private
-
-  def can_be_archived
+  def can_be_archived?
     current_date = Date.today
     current_date.year - publish_date.year > 10
   end
