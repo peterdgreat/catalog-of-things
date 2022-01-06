@@ -47,7 +47,7 @@ class App
   end
 
   def menu_choice(option)
-    if option.to_i <= 6
+    if option <= 6
       choices_pt1(option)
     else
       choices_pt2(option)
@@ -56,17 +56,17 @@ class App
 
   def choices_pt1(option)
     case option
-    when '1'
+    when 1
       @books_manager.list_all_books
-    when '2'
+    when 2
       puts @music_album_handler.music_albums
-    when '3'
+    when 3
       puts 'Listing all movies'
-    when '4'
+    when 4
       @game_manager.list_games
-    when '5'
+    when 5
       puts @genre_handler.genres
-    when '6'
+    when 6
       @labels_manager.list_all_labels
     else
       puts 'Not a valid option'
@@ -79,11 +79,11 @@ class App
       @author_manager.list_authors
     when 8
       puts 'Listing all sources'
-    when '9'
+    when 9
       @books_manager.add_book
-    when '10'
+    when 10
       @music_album_handler.create_music_album(@genre_handler)
-    when '11'
+    when 11
       puts 'Adding a movie'
     when 12
       puts 'Adding a game'
