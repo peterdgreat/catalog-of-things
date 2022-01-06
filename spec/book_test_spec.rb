@@ -2,7 +2,7 @@ require './book'
 
 describe Book do
   context 'testing Book class' do
-    book = Book.new('My Publisher', 'New', '2018-01-01')
+    book = Book.new(id: nil, publisher: 'My Publisher', cover_state: 'New', publish_date: '2018-01-01')
 
     it 'should return 1My Publisher as a publisher' do
       expect(book.publisher).to eq 'My Publisher'

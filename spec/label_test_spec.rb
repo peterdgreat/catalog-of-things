@@ -2,7 +2,7 @@ require './label'
 
 describe Label do
   context 'testing Label class' do
-    label = Label.new('Gift', 'Red')
+    label = Label.new(id: nil, title: 'Gift', color: 'Red')
 
     it 'should return Gift as a label title' do
       expect(label.title).to eq 'Gift'
@@ -13,7 +13,7 @@ describe Label do
     end
 
     it 'should return 1 as item length' do
-      i = Item.new publish_date: '2020-1-1'
+      i = Item.new(id: nil, publish_date: '2020-1-1')
       label.add_item i
       expect(label.items.length).to eq 1
     end
