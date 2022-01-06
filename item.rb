@@ -18,6 +18,7 @@ class Item
   end
 
   def add_author(author = nil)
+ 
     author ||= @author_manager.add_author
     @author = author
     author.items.push(self) unless author.items.include?(self)
