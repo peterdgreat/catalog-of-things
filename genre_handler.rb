@@ -23,8 +23,8 @@ class GenreHandler
     end
   end
 
-  def add_genre(name:, id: nil)
-    @genres.push(Genre.new(id: id, name: name))
+  def add_genre(genre)
+    @genres.push(genre)
   end
 
   def create_genre

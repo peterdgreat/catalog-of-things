@@ -1,5 +1,6 @@
 require 'json'
 require './music_album'
+require './genre_handler'
 require './translate'
 
 class MusicAlbumHandler
@@ -25,11 +26,13 @@ class MusicAlbumHandler
     end
   end
 
-  def add_music_album(publish_date:, id: nil)
-    @music_albums.push(MusicAlbum.new(id: id, publish_date: publish_date))
+  def add_music_album(music_album)
+    @music_albums.push(music_album)
   end
 
   def create_music_album
+    @genre_handler = GenreHandler.new
+    @genre_handler.load
     puts ''
     puts 'Creating Music Album...'
     print 'Published date: '
@@ -46,5 +49,22 @@ class MusicAlbumHandler
     puts ''
     @music_albums.push(music_album)
     puts 'Music Album created!'
+  end
+
+  def prompt_genre
+    puts '1) Create a new genre for the music album'
+    puts '2) List and use an existing genre'
+    puts '3) Create music album without genre'
+    option = gets.chomp
+    case option
+    when '1'
+      puts 'asd'
+    when '2'
+      puts 'qwe'
+    when '3'
+      puts 'Creating Music Album without genre'
+    else
+      puts 'Invalid option, aborting genre creation'
+    end
   end
 end
