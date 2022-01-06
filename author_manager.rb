@@ -19,9 +19,6 @@ class AuthorManager
   end
 
   def list_authors
-    # read_author.each do |author|
-    #   puts author.to_json
-    # end
     @authors.each do |author|
       puts author.to_json
     end
