@@ -1,5 +1,14 @@
 CREATE DATABASE 'catalog';
 
+CREATE TABLE music_album(
+  on_spotify BOOLEAN
+) INHERITS (item);
+
+CREATE TABLE genre(
+  id SERIAL PRIMARY KEY,
+  name VARCHAR
+);
+
 CREATE TABLE item(
   id SERIAL PRIMARY KEY,
   genre_id INT,
@@ -8,19 +17,9 @@ CREATE TABLE item(
   label_id INT,
   publish_date DATE,
   archived BOOLEAN,
-  FOREIGN KEY (genre_id) REFERENCES genres(id),
-  FOREIGN KEY (author_id) REFERENCES authors(id),
-  FOREIGN KEY (source_id) REFERENCES sources(id),
-  FOREIGN KEY (label_id) REFERENCES labels(id)
-);
-
-CREATE TABLE music_album(
-  on_spotify BOOLEAN
-) INHERITS (item);
-
-CREATE TABLE genre(
-  id SERIAL PRIMARY KEY,
-  name VARCHAR
+  FOREIGN KEY (genre_id) REFERENCES genre(id),
+  FOREIGN KEY (author_id) REFERENCES author(id),
+  FOREIGN KEY (label_id) REFERENCES label(id)
 );
 
 CREATE TABLE book(
@@ -42,10 +41,6 @@ CREATE TABLE book(
     FOREIGN KEY(author_id) 
 	REFERENCES author(id)
 	ON DELETE CASCADE,
-    CONSTRAINT fk_source
-    FOREIGN KEY(source_id) 
-	REFERENCES source(id)
-	ON DELETE CASCADE,
     CONSTRAINT fk_label
     FOREIGN KEY(label_id) 
 	REFERENCES label(id)
@@ -54,23 +49,23 @@ CREATE TABLE book(
 
 CREATE TABLE label(id INT GENERATED ALWAYS AS IDENTITY, title VARCHAR(255), color VARCHAR(255), PRIMARY KEY(id));
 
-CREATE TABLE label_item (
+CREATE TABLE label_book (
     id INT GENERATED ALWAYS AS IDENTITY,
-    item_id INT,
+    book_id INT,
     label_id INT,
     UNIQUE(id),
     CONSTRAINT fk_label
     FOREIGN KEY(label_id) 
 	REFERENCES label(id)
 	ON DELETE CASCADE,
-    CONSTRAINT fk_item
-    FOREIGN KEY(item_id) 
-	REFERENCES item(id)
+    CONSTRAINT fk_book
+    FOREIGN KEY(book_id) 
+	REFERENCES book(id)
 	ON DELETE CASCADE );
 
 
-create TABLE games(
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+create TABLE game(
+    id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     multiplayer BOOLEAN,
     last_played_at DATE,
     publish_date DATE,
@@ -79,19 +74,17 @@ create TABLE games(
     FOREIGN KEY(genre_id) REFERENCES genre(id),
     author_id INTEGER,
     FOREIGN KEY(author_id) REFERENCES author(id)
-    source_id INTEGER,
-    FOREIGN KEY(source_id) REFERENCES source(id)
-    author_id INTEGER,
-    FOREIGN KEY(author_id) REFERENCES author(id)
 );
+
 create TABLE author(
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     first_name VARCHAR(255),
-    last_name VARCHAR(255),
+    last_name VARCHAR(255)
 );
-create TABLE author_item(
+
+create TABLE author_game(
     author_id INTEGER,
-    item_id INTEGER,
+    game_id INTEGER,
     FOREIGN KEY(author_id) REFERENCES author(id),
-    FOREIGN KEY(item_id) REFERENCES item(id)
+    FOREIGN KEY(game_id) REFERENCES game(id)
 );
