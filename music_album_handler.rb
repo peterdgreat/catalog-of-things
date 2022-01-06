@@ -46,9 +46,7 @@ class MusicAlbumHandler
       music_album.move_to_archive
       puts "It wasn't possible to archive this Music Album" if translate_input(archived) != music_album.archived
     end
-    puts '1) Create a new genre for the music album'
-    puts '2) List and use an existing genre'
-    puts '3) Create music album without genre'
+    puts "1) Create a new genre to use \n2) List and use an existing genre\n3) Create without genre"
     option = gets.chomp
     genre = prompt_genre(option, genre_handler)
     music_album.add_genre(genre)

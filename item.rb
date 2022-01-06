@@ -12,7 +12,7 @@ class Item
 
   def add_genre(genre)
     @genre = genre
-    genre.items.push(self) unless genre == nil
+    genre&.items&.push(self)
   end
 
   def add_author(author)

@@ -34,9 +34,9 @@ class GenreHandler
     name = gets.chomp
     genre = Genre.new(id: nil, name: name)
     if check_if_genre_exists?(name)
-      return get_genre_from_name(name)
+      get_genre_from_name(name)
     else
-      return genre
+      genre
     end
   end
 
@@ -49,10 +49,10 @@ class GenreHandler
   def check_if_genre_exists?(name)
     if list_of_genre_names.include?(name.downcase)
       puts 'Genre is already in the list of genres'
-      return true
+      true
     else
       puts "Genre #{name} created!"
-      return false
+      false
     end
   end
 
