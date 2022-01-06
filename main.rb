@@ -1,3 +1,6 @@
+require_relative 'game_manager'
+require_relative 'author'
+require_relative 'author_manager'
 require './music_album_handler'
 require './genre_handler'
 require './books_manager'
@@ -5,6 +8,10 @@ require './labels_manager'
 
 class App
   def initialize
+    @game_manager = GameManager.new
+    @game_manager.read_games
+    @author_manager = AuthorManager.new
+    @author_manager.read_author
     @genre_handler = GenreHandler.new
     @genre_handler.load
     @music_album_handler = MusicAlbumHandler.new
@@ -29,8 +36,8 @@ class App
       puts ''
       puts 'Please choose an option by eterin a number:'
       @options.each { |key, value| puts "#{key}) #{value}" }
-      option = gets.chomp
-      if option == '0'
+      option = gets.chomp.to_i
+      if option.zero?
         save_and_exit
         break
       end
@@ -56,7 +63,7 @@ class App
     when '3'
       puts 'Listing all movies'
     when '4'
-      puts 'Listing of games'
+      @game_manager.list_games
     when '5'
       puts @genre_handler.genres
     when '6'
@@ -68,9 +75,9 @@ class App
 
   def choices_pt2(option)
     case option
-    when '7'
-      puts 'Listing all authors'
-    when '8'
+    when 7
+      @author_manager.list_authors
+    when 8
       puts 'Listing all sources'
     when '9'
       @books_manager.add_book
@@ -78,14 +85,17 @@ class App
       @music_album_handler.create_music_album(@genre_handler)
     when '11'
       puts 'Adding a movie'
-    when '12'
+    when 12
       puts 'Adding a game'
+      @game_manager.add_game(@author_manager)
     else
       puts 'Not a valid option'
     end
   end
 
   def save_and_exit
+    @game_manager.store_games
+    @author_manager.store_authors
     @music_album_handler.save
     @genre_handler.save
   end

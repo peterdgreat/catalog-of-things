@@ -1,5 +1,7 @@
 require 'date'
+require_relative 'author_manager'
 require './labels_manager'
+
 
 class Item
   attr_reader :id
@@ -16,7 +18,7 @@ class Item
     genre&.items&.push(self)
   end
 
-  def add_author(author)
+  def add_author(author = nil)
     @author = author
     author.items.push(self) unless author.items.include?(self)
   end
