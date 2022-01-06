@@ -12,7 +12,7 @@ class Item
 
   def add_genre(genre)
     @genre = genre
-    genre.items.push(self) unless genre.items.include?(self)
+    genre.items.push(self) unless genre == nil
   end
 
   def add_author(author)
@@ -35,8 +35,8 @@ class Item
   end
 
   def to_s
-    "ID: #{@id} - Publish Date: #{@publish_date} - Genre: #{@genre&.id} - Author: #{@author&.id}\
-    - Source: #{@source&.id} - Label: #{@label&.id} - Archived? #{@archived}"
+    "ID: #{@id} - Publish Date: #{@publish_date} - Genre: #{@genre&.name} - Author: #{@author&.name}\
+    - Source: #{@source&.name} - Label: #{@label&.name} - Archived? #{@archived}"
   end
 
   def to_json(_options = {})

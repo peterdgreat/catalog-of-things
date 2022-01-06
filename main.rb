@@ -3,10 +3,10 @@ require './genre_handler'
 
 class App
   def initialize
-    @music_album_handler = MusicAlbumHandler.new
-    @music_album_handler.load
     @genre_handler = GenreHandler.new
     @genre_handler.load
+    @music_album_handler = MusicAlbumHandler.new
+    @music_album_handler.load(@genre_handler)
     @options = {
       '1' => 'List all books',
       '2' => 'List all music albums',
@@ -77,7 +77,7 @@ class App
     when '9'
       puts 'Adding a book'
     when '10'
-      @music_album_handler.create_music_album
+      @music_album_handler.create_music_album(@genre_handler)
     when '11'
       puts 'Adding a movie'
     when '12'
@@ -89,6 +89,7 @@ class App
 
   def save_and_exit
     @music_album_handler.save
+    @genre_handler.save
   end
 end
 

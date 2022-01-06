@@ -18,7 +18,7 @@ class MusicAlbum < Item
 
   def to_json(_options = {})
     super.merge({
-      'on_spotify' => @on_spotify
-    })
+                  'on_spotify' => @on_spotify
+                })
   end
 end
