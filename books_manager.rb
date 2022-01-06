@@ -20,7 +20,8 @@ class BooksManager
     puts 'Enter is book archived [Y/N] ?'
     archived = gets.chomp
     is_archived = archived.downcase == 'y'
-    book = Book.new(publisher, cover_state, publish_date, archived: is_archived)
+    book = Book.new(publisher, cover_state, publish_date)
+    book.move_to_archive if is_archived
     add_label book
     @books.push(book)
     save_books
