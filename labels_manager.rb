@@ -11,7 +11,7 @@ class LabelsManager
     title = gets.chomp
     puts 'Enter Color'
     color = gets.chomp
-    label = Label.new(title, color)
+    label = Label.new(id: nil, title: title, color: color)
     @labels.push(label)
     save_labels
     label
@@ -34,7 +34,7 @@ class LabelsManager
   def convert_hashs_to_labels(hashes)
     labels = []
     hashes.each do |h|
-      l = Label.new(h['title'], h['color'], h['id'])
+      l = Label.new(id: h['id'], title: h['title'], color: h['color'])
       labels << l
     end
     labels

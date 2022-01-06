@@ -20,7 +20,7 @@ class BooksManager
     puts 'Enter is book archived [Y/N] ?'
     archived = gets.chomp
     is_archived = archived.downcase == 'y'
-    book = Book.new(publisher, cover_state, publish_date)
+    book = Book.new(id: nil, publisher: publisher, cover_state: cover_state, publish_date: publish_date)
     book.move_to_archive if is_archived
     add_label book
     @books.push(book)
@@ -57,7 +57,8 @@ class BooksManager
   def convert_hashs_to_books(hashes)
     books = []
     hashes.each do |h|
-      b = Book.new(h['publisher'], h['cover_state'], h['publish_date'], archived: h['archived'])
+      b = Book.new(id: nil, publisher: h['publisher'], cover_state: h['cover_state'], publish_date: h['publish_date'],
+                   archived: h['archived'])
       l = convert_hash_to_label h['label']
       b.add_label(l)
       books << b
@@ -66,7 +67,7 @@ class BooksManager
   end
 
   def convert_hash_to_label(hash)
-    Label.new(hash['title'], hash['color'], hash['id'])
+    Label.new(id: hash['id'], title: hash['title'], color: hash['color'])
   end
 
   def convert_books_to_hashes
