@@ -2,7 +2,6 @@ require 'date'
 require_relative 'author_manager'
 require './labels_manager'
 
-
 class Item
   attr_reader :id
   attr_accessor :genre, :author, :source, :label, :publish_date, :archived

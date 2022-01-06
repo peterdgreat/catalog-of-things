@@ -16,7 +16,7 @@ describe Author do
   end
   it 'should add item to items array' do
     author = Author.new('John', 'Doe')
-    game = Game.new(multi_player: true, last_played_at:'2018-01-01', publish_date:'2018-01-01')
+    game = Game.new(multi_player: true, last_played_at: '2018-01-01', publish_date: '2018-01-01')
     author.add_item(game)
     expect(author.items).to include(game)
   end
