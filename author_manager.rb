@@ -1,25 +1,27 @@
 require 'json'
 require_relative 'author'
 class AuthorManager
-  attr_reader :authors
+  attr_accessor :authors
 
   def initialize
     @authors = []
   end
 
   def add_author
-    puts 'First lets let get the author name'
-    puts ''
     puts 'First name'
     first_name = gets.chomp
     puts 'Last name'
     last_name = gets.chomp
-    @authors.push(Author.new(first_name, last_name))
+    author = Author.new(first_name, last_name)
+    @authors.push(author) unless @authors.include?(author)
+
+    author
   end
 
   def list_authors
-    puts 'Here are all the authors'
-    add_author
+    # read_author.each do |author|
+    #   puts author.to_json
+    # end
     @authors.each do |author|
       puts author.to_json
     end

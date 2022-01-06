@@ -76,8 +76,7 @@ class App
   def choices_pt2(option)
     case option
     when 7
-      puts 'Not Available'
-      # @author_manager.list_authors
+      @author_manager.list_authors
     when 8
       puts 'Listing all sources'
     when 9
@@ -96,7 +95,7 @@ class App
 
   def save_and_exit
     @game_manager.store_games
-    # @author_manager.store_authors
+    @author_manager.store_authors
   end
 end
 

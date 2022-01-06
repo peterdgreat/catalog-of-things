@@ -1,4 +1,6 @@
 require_relative 'game'
+require_relative 'author'
+require_relative 'author_manager'
 require 'json'
 class GameManager
   attr_accessor :games
@@ -15,8 +17,16 @@ class GameManager
     puts 'Publish date (yyyy-mm-dd)'
     publish_date = gets.chomp
     game = Game.new(multi_player: multi_player, last_played_at: last_played_at, publish_date: publish_date)
+    game.move_to_archive if game.can_be_archived
+    add_author(game)
     @games.push(game) unless @games.include?(game)
     puts 'Game added'
+  end
+
+  def add_author(game)
+    puts 'Do you want to add an author? (y/n)'
+    answer = gets.chomp
+    game.add_author if answer == 'y'
   end
 
   def store_games
