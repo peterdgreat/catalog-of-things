@@ -1,5 +1,7 @@
 require './music_album_handler'
 require './genre_handler'
+require './books_manager'
+require './labels_manager'
 
 class App
   def initialize
@@ -7,6 +9,8 @@ class App
     @genre_handler.load
     @music_album_handler = MusicAlbumHandler.new
     @music_album_handler.load(@genre_handler)
+    @books_manager = BooksManager.new
+    @labels_manager = LabelsManager.new
     @options = {
       '1' => 'List all books',
       '2' => 'List all music albums',
@@ -52,7 +56,7 @@ class App
   def choices_pt1(option)
     case option
     when '1'
-      puts 'Listing all books'
+      @books_manager.list_all_books
     when '2'
       puts @music_album_handler.music_albums
     when '3'
@@ -62,7 +66,7 @@ class App
     when '5'
       puts @genre_handler.genres
     when '6'
-      puts 'Listing all labels'
+      @labels_manager.list_all_labels
     else
       puts 'Not a valid option'
     end
@@ -75,7 +79,7 @@ class App
     when '8'
       puts 'Listing all sources'
     when '9'
-      puts 'Adding a book'
+      @books_manager.add_book
     when '10'
       @music_album_handler.create_music_album(@genre_handler)
     when '11'
