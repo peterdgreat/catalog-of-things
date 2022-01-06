@@ -14,7 +14,6 @@ class AuthorManager
     last_name = gets.chomp
     author = Author.new(first_name, last_name)
     @authors.push(author) unless @authors.include?(author)
-
     author
   end
 
@@ -25,10 +24,10 @@ class AuthorManager
   end
 
   def store_authors
-    File.write('author.json', JSON.pretty_generate(@authors), mode: 'w')
+    File.write('data/author.json', JSON.pretty_generate(@authors), mode: 'w')
   end
 
   def read_author
-    JSON.parse(File.read('author.json')) if File.exist?('author.json')
+    JSON.parse(File.read('data/author.json')) if File.exist?('data/author.json')
   end
 end

@@ -87,7 +87,7 @@ class App
       puts 'Adding a movie'
     when 12
       puts 'Adding a game'
-      @game_manager.add_game
+      @game_manager.add_game(@author_manager)
     else
       puts 'Not a valid option'
     end

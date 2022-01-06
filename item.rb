@@ -9,7 +9,6 @@ class Item
     @id = id || Random.rand(1..1_000_000)
     @publish_date = publish_date
     @archived = archived
-    @author_manager = AuthorManager.new
   end
 
   def add_genre(genre)
@@ -18,8 +17,6 @@ class Item
   end
 
   def add_author(author = nil)
- 
-    author ||= @author_manager.add_author
     @author = author
     author.items.push(self) unless author.items.include?(self)
   end
