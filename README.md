@@ -2,20 +2,26 @@
 
 # Catalog of Things
 
-> Work in progress
+> In this project, we created a console app that will help you to keep a record of different types of things you won: books, music albums, movies, and games. Everything is be based on the UML class diagram presented. The data will be stored in JSON files but we also prepared a database with tables structure analogical to the program's class structure.
 
 ## Prerequisites
 
 Ruby >= 3.0.0
+Rspec
 
 ## Getting Started
 
 - Run git clone on this project at the desired directory:
-   ```
-   git clone https://github.com/peterdgreat/catalog-of-things
-   ```
+  ```
+  git clone https://github.com/peterdgreat/catalog-of-things
+  ```
 - Go to the cloned directory with `cd catalog-of-things`
 - With Ruby installed in your environment, you can run `ruby main.rb` to see some tests going on with the code
+
+## Tests
+
+- To run tests first install Rspec with `gem install rspec`
+- inside the repo's root folder run `rspec spec `to see the tests in action
 
 ## Authors
 
