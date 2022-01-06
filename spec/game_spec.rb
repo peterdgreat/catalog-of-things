@@ -15,7 +15,7 @@ describe Game do
   end
   it 'should have publish date based on input' do
     game = Game.new(multi_player: true, last_played_at: '2018-01-01', publish_date: '2018-01-01')
-    expect(game.publish_date).to eq('2018-01-01')
+    expect(game.publish_date.to_s).to eq('2018-01-01')
   end
   it 'should have last played at based on input' do
     game = Game.new(multi_player: true, last_played_at: '2018-01-01', publish_date: '2018-01-01')
